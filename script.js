@@ -13,29 +13,30 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Please enter a task"); // Alert the user to enter a task
             return; // Stop function execution
         }
+        if (taskText !== "") {
+            // Create a new <li> element for the task
+            const taskItem = document.createElement("li");
+            taskItem.textContent = taskText;
 
-        // Create a new <li> element for the task
-        const taskItem = document.createElement("li");
-        taskItem.textContent = taskText;
+            // Create a remove button
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.className = "remove-btn"; // Add class for styling
 
-        // Create a remove button
-        const removeButton = document.createElement("button");
-        removeButton.textContent = "Remove";
-        removeButton.className = "remove-btn"; // Add class for styling
+            // Assign onclick event to remove the task when clicked
+            removeButton.onclick = function () {
+                taskList.removeChild(taskItem);
+            };
 
-        // Assign onclick event to remove the task when clicked
-        removeButton.onclick = function () {
-            taskList.removeChild(taskItem);
-        };
+            // Append remove button to task item
+            taskItem.appendChild(removeButton);
 
-        // Append remove button to task item
-        taskItem.appendChild(removeButton);
+            // Append task item to task list
+            taskList.appendChild(taskItem);
 
-        // Append task item to task list
-        taskList.appendChild(taskItem);
-
-        // Clear the input field
-        taskInput.value = "";
+            // Clear the input field
+            taskInput.value = "";
+        }
     }
 
     // Attach event listener to Add Task button
