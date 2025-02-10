@@ -12,15 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Save tasks to Local Storage
     function saveTasks() {
-        const tasks = Array.from(taskList.children).map(taskItem => taskItem.firstChild.textContent);
+        const tasks = Array.from(taskList.children).map(taskItem => taskItem.querySelector(".task-text").textContent);
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }
 
     // Function to add a new task to the DOM
     function addTaskToDOM(taskText) {
         const taskItem = document.createElement("li");
-        taskItem.textContent = taskText;
-        taskItem.classList.add("task-item"); // Add class for styling
+        taskItem.classList.add("task-item"); // Add class to list item
+
+        const taskSpan = document.createElement("span");
+        taskSpan.textContent = taskText;
+        taskSpan.classList.add("task-text"); // Add class for task text
 
         // Create a remove button
         const removeButton = document.createElement("button");
@@ -33,7 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
             saveTasks(); // Update Local Storage
         });
 
-        // Append remove button to task item
+        // Append elements to task item
+        taskItem.appendChild(taskSpan);
         taskItem.appendChild(removeButton);
         taskList.appendChild(taskItem);
     }
