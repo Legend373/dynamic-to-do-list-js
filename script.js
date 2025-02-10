@@ -20,11 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
     function addTaskToDOM(taskText) {
         const taskItem = document.createElement("li");
         taskItem.textContent = taskText;
+        taskItem.classList.add("task-item"); // Add class for styling
 
         // Create a remove button
         const removeButton = document.createElement("button");
         removeButton.textContent = "Remove";
-        removeButton.className = "remove-btn";
+        removeButton.classList.add("remove-btn"); // Add class for styling
 
         // Assign an onclick event to remove the task
         removeButton.addEventListener("click", function () {
